@@ -56,7 +56,7 @@ Versi uji coba dari platform mental health dengan akses penuh tanpa login dan sc
 
 ---
 
-### 📚 [EduCourse Platform](https://github.com/username/educourse)  
+### 📚 [EduCourse Platform]  
 Platform pembelajaran daring dengan modul, video, forum, quiz, dan dashboard pengguna.  
 *Tech:* Django, HTML, CSS, Bootstrap  
 
