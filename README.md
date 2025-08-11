@@ -34,6 +34,16 @@ Berpengalaman mengerjakan proyek berbasis **React**,**Next.js**,**Vite**,**Tailw
 
 ## 📌 Highlight Projects
 
+### 💌 [Wedding Invitation](https://github.com/username/wedding_invitation)  
+Undangan pernikahan digital dengan desain elegan, RSVP online, hitung mundur acara, galeri foto, dan integrasi Google Maps untuk lokasi.  
+*Tech:* Next.js, Tailwind CSS  
+
+---
+
+### 🍲 [Makanan Nusantara](https://github.com/username/makanan_nusantara)  
+Website katalog kuliner nusantara dengan informasi resep, asal daerah, dan pencarian interaktif.  
+*Tech:* React, Vite, Tailwind CSS, JSON API  
+
 ### 🧠 [Mental Health V2](https://github.com/username/mental_healthv2)  
 Platform kesehatan mental berbasis web untuk mahasiswa dengan fitur login, screening, program mindfulness, artikel, jurnal harian, serta panel admin berbasis CRUD.  
 *Tech:* Flask, MongoDB, HTML, CSS, Bootstrap, JavaScript  
