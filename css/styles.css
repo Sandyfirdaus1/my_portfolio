@@ -3849,6 +3849,7 @@ img.u-pull-left {
   position: absolute;
   top: var(--vspace-1);
   left: var(--vspace-1);
+  z-index: 10; /* ensure visible above swiper slides/arrows */
 }
 
 .modal-popup__details:focus,
@@ -3954,18 +3955,21 @@ img.u-pull-left {
 /* full-height prev/next hit areas for modal galleries */
 .modal-popup .swiper-container {
   overflow: visible;
+  /* set navigation color/size for better contrast on white background */
+  --swiper-navigation-color: #111;
+  --swiper-navigation-size: 26px;
 }
 
-/* Remove any arrow styles no longer needed (elements removed in HTML) */
+/* show navigation arrows inside modal galleries */
 .modal-popup .swiper-button-prev,
 .modal-popup .swiper-button-next {
-  display: none !important;
+  display: flex !important;
+  z-index: 9; /* keep under project link but above slides */
 }
 
-/* Ensure bullets are visible and well-positioned */
+/* hide bullets (we use arrows only) */
 .modal-popup .swiper-pagination {
-  display: block;
-  bottom: 8px;
+  display: none !important;
 }
 
 @media screen and (max-width: 600px) {

@@ -211,22 +211,22 @@
     const containers = document.querySelectorAll(".swiper-container");
     if (window.Swiper && containers.length) {
       containers.forEach(function (container) {
+        if (container.dataset.swiperInitialized) return;
         new Swiper(container, {
           slidesPerView: 1,
-          pagination: {
-            el: container.querySelector(".swiper-pagination"),
-            clickable: true,
+          pagination: false,
+          navigation: {
+            nextEl: container.querySelector(".swiper-button-next"),
+            prevEl: container.querySelector(".swiper-button-prev"),
           },
-          // navigation removed
+          allowTouchMove: false,
+          simulateTouch: false,
           loop: true,
           observer: true,
           observeParents: true,
-          breakpoints: {
-            401: { slidesPerView: 1, spaceBetween: 20 },
-            801: { slidesPerView: 2, spaceBetween: 32 },
-            1201: { slidesPerView: 2, spaceBetween: 80 },
-          },
+          // disable breakpoints so it always 1 per view
         });
+        container.dataset.swiperInitialized = "true";
       });
     }
   }; // end ssSwiper
@@ -256,18 +256,23 @@
               .querySelectorAll(".swiper-container")
               .forEach(function (container) {
                 if (!container.dataset.swiperInitialized) {
-                  new Swiper(container, {
+                  var swiper = new Swiper(container, {
                     slidesPerView: 1,
-                    pagination: {
-                      el: container.querySelector(".swiper-pagination"),
-                      clickable: true,
+                    pagination: false,
+                    navigation: {
+                      nextEl: container.querySelector(".swiper-button-next"),
+                      prevEl: container.querySelector(".swiper-button-prev"),
                     },
-                    // navigation removed
+                    allowTouchMove: false,
+                    simulateTouch: false,
                     loop: true,
                     observer: true,
                     observeParents: true,
                   });
                   container.dataset.swiperInitialized = "true";
+                  setTimeout(function () {
+                    swiper.update();
+                  }, 50);
                 }
               });
           }
