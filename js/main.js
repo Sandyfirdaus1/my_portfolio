@@ -49,14 +49,21 @@
     .add({
       targets: ".circles span",
       keyframes: [
-        { opacity: [0, 0.3] },
+        { opacity: [0, 0.3], scale: [0.8, 1] },
         {
           opacity: [0.3, 0.1],
+          scale: [1, 1.1],
           delay: anime.stagger(100, { direction: "reverse" }),
         },
       ],
       delay: anime.stagger(100, { direction: "reverse" }),
     })
+    .add({
+      targets: ".circles span",
+      rotate: [-180, 0],
+      duration: 2000,
+      easing: "easeInOutQuad",
+    }, "-=1800")
     .add({
       targets: ".intro-social li",
       translateX: [-50, 0],
@@ -193,9 +200,10 @@
             targets: current.querySelectorAll("[data-animate-el]"),
             opacity: [0, 1],
             translateY: [100, 0],
-            delay: anime.stagger(400, { start: 200 }),
-            duration: 800,
-            easing: "easeInOutCubic",
+            translateX: [-30, 0],
+            delay: anime.stagger(200, { start: 100 }),
+            duration: 1000,
+            easing: "easeOutExpo",
             begin: function (anim) {
               current.classList.add("ss-animated");
             },
@@ -351,6 +359,120 @@
     });
   }; // end ssMoveTo
 
+  /* Parallax effect on scroll
+   * ------------------------------------------------------ */
+  const ssParallax = function () {
+    const circles = document.querySelector(".circles");
+    if (!circles) return;
+
+    window.addEventListener("scroll", function () {
+      const scrollY = window.pageYOffset;
+      circles.style.transform = `translateY(${scrollY * 0.3}px) rotate(${scrollY * 0.05}deg)`;
+    });
+  }; // end ssParallax
+
+  /* Mouse move effect for intro
+   * ------------------------------------------------------ */
+  const ssMouseMove = function () {
+    const intro = document.querySelector(".s-intro");
+    if (!intro) return;
+
+    intro.addEventListener("mousemove", function (e) {
+      const x = (e.clientX / window.innerWidth - 0.5) * 2;
+      const y = (e.clientY / window.innerHeight - 0.5) * 2;
+      
+      anime({
+        targets: ".circles span",
+        translateX: x * 30,
+        translateY: y * 30,
+        rotate: x * 10,
+        duration: 800,
+        easing: "easeOutQuad",
+      });
+    });
+
+    // Reset on mouse leave
+    intro.addEventListener("mouseleave", function () {
+      anime({
+        targets: ".circles span",
+        translateX: 0,
+        translateY: 0,
+        rotate: 0,
+        duration: 1000,
+        easing: "easeOutQuad",
+      });
+    });
+  }; // end ssMouseMove
+
+  /* Typing effect for intro title
+   * ------------------------------------------------------ */
+  const ssTyping = function () {
+    const title = document.querySelector(".text-huge-title");
+    if (!title) return;
+
+    const text = title.innerHTML;
+    title.innerHTML = "";
+    
+    anime({
+      targets: title,
+      innerHTML: [0, text.length],
+      round: 1,
+      easing: "easeInOutQuad",
+      duration: 2000,
+      update: function (anim) {
+        title.innerHTML = text.substring(0, Math.round(anim.animations[0].currentValue));
+      },
+    });
+  }; // end ssTyping
+
+  /* Magnetic button effect
+   * ------------------------------------------------------ */
+  const ssMagnetic = function () {
+    const buttons = document.querySelectorAll(".btn");
+    
+    buttons.forEach(function (btn) {
+      btn.addEventListener("mousemove", function (e) {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        
+        btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+      });
+      
+      btn.addEventListener("mouseleave", function () {
+        btn.style.transform = "translate(0, 0)";
+      });
+    });
+  }; // end ssMagnetic
+
+  /* Glowing cursor trail effect
+   * ------------------------------------------------------ */
+  const ssCursorTrail = function () {
+    const trail = document.createElement("div");
+    trail.style.cssText = `
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--color-1) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 9998;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    `;
+    document.body.appendChild(trail);
+
+    document.addEventListener("mousemove", function (e) {
+      trail.style.left = e.clientX - 10 + "px";
+      trail.style.top = e.clientY - 10 + "px";
+      trail.style.opacity = "0.5";
+    });
+
+    document.addEventListener("mouseleave", function () {
+      trail.style.opacity = "0";
+    });
+  }; // end ssCursorTrail
+
   /* Initialize
    * ------------------------------------------------------ */
   (function ssInit() {
@@ -362,5 +484,10 @@
     ssLightbox();
     ssAlertBoxes();
     ssMoveTo();
+    ssParallax();
+    ssMouseMove();
+    ssMagnetic();
+    ssCursorTrail();
+    // ssTyping(); // Uncomment for typing effect
   })();
 })(document.documentElement);
