@@ -3674,6 +3674,69 @@ img.u-pull-left {
   margin-left: var(--timeline-left-padding);
 }
 
+/* --------------------------------------------------------------------
+ * ## section headers for new sections
+ * -------------------------------------------------------------------- */
+.section-header {
+  margin-bottom: var(--vspace-4);
+  position: relative;
+}
+
+.section-header.has-bottom-sep {
+  padding-bottom: var(--vspace-2);
+  margin-bottom: var(--vspace-3);
+  border-bottom: 1px solid rgba(234, 190, 124, 0.2);
+}
+
+.section-header.has-bottom-sep::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-1) 0%, var(--color-2) 100%);
+  box-shadow: 0 0 10px rgba(234, 190, 124, 0.5);
+}
+
+.section-header .text-pretitle {
+  background: linear-gradient(90deg, var(--color-1) 0%, var(--color-2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+.section-header .text-huge-title {
+  background: linear-gradient(90deg, #ffffff 0%, var(--color-1) 50%, #ffffff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 5s ease-in-out infinite;
+}
+
+/* Responsive section headers */
+@media screen and (max-width: 800px) {
+  .section-header .text-huge-title {
+    font-size: calc(var(--text-huge) * 0.6);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .section-header .text-huge-title {
+    font-size: calc(var(--text-huge) * 0.5);
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .section-header .text-huge-title {
+    font-size: var(--text-xl);
+    line-height: var(--vspace-1_5);
+  }
+}
+
 .timeline {
   margin-top: var(--vspace-1_25);
   padding-right: 1vw;
@@ -3695,6 +3758,16 @@ img.u-pull-left {
   padding-left: var(--timeline-left-padding);
   padding-bottom: var(--vspace-0_5);
   position: relative;
+  transition: all 0.3s ease;
+}
+
+.timeline__block:hover {
+  transform: translateX(10px);
+}
+
+.timeline__block:hover .timeline__bullet {
+  transform: scale(1.5);
+  box-shadow: 0 0 20px rgba(234, 190, 124, 0.8);
 }
 
 .timeline__block:last-child {
@@ -3703,14 +3776,16 @@ img.u-pull-left {
 
 .timeline__bullet {
   display: block;
-  height: 8px;
-  width: 8px;
+  height: 12px;
+  width: 12px;
   border-radius: 50%;
-  background-color: var(--color-1);
+  background: linear-gradient(135deg, var(--color-1) 0%, var(--color-2) 100%);
   position: absolute;
   top: var(--timeline-top-adjust);
   left: 0;
   animation: pulse-bullet 2s ease-in-out infinite;
+  box-shadow: 0 0 0 4px rgba(234, 190, 124, 0.1);
+  transition: all 0.3s ease;
 }
 
 @keyframes pulse-bullet {
@@ -3726,27 +3801,50 @@ img.u-pull-left {
 
 .timeline__title {
   font-family: var(--font-1);
-  font-weight: 500;
+  font-weight: 600;
   font-size: var(--text-lg);
+  background: linear-gradient(90deg, var(--color-1) 0%, var(--color-2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   margin-top: 0;
   margin-bottom: var(--vspace-0_125);
 }
 
 .timeline__meta {
   font-family: var(--font-1);
-  font-weight: 300;
-  font-size: calc(var(--text-size) * 1.1053);
-  margin-top: 0;
-  margin-bottom: var(--vspace-0_125);
+  font-weight: 500;
+  font-size: var(--text-sm);
+  color: var(--color-text-light);
+  margin-top: var(--vspace-0_25);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .timeline__timeframe {
+  font-family: var(--font-2);
+  font-weight: 500;
   font-size: var(--text-xs);
-  line-height: var(--vspace-0_75);
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: var(--color-text-light);
-  margin-top: -0.2rem;
+  color: var(--color-1);
+  margin-top: var(--vspace-0_25);
+  background: rgba(234, 190, 124, 0.1);
+  padding: 4px 12px;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.timeline__desc {
+  margin-top: var(--vspace-0_5);
+  background: linear-gradient(135deg, rgba(234, 190, 124, 0.05) 0%, rgba(234, 190, 124, 0.02) 100%);
+  padding: 16px;
+  border-radius: 8px;
+  border-left: 3px solid var(--color-1);
+  transition: all 0.3s ease;
+}
+
+.timeline__desc:hover {
+  background: linear-gradient(135deg, rgba(234, 190, 124, 0.1) 0%, rgba(234, 190, 124, 0.05) 100%);
+  box-shadow: 0 4px 15px rgba(234, 190, 124, 0.2);
 }
 
 /* ------------------------------------------------------------------- 
