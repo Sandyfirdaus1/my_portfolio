@@ -3842,6 +3842,41 @@ img.u-pull-left {
   transition: all 0.3s ease;
 }
 
+.timeline__desc ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.timeline__desc ul li {
+  position: relative;
+  padding-left: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-text-light);
+  line-height: var(--vspace-0_875);
+}
+
+.timeline__desc ul li:last-child {
+  margin-bottom: 0;
+}
+
+.timeline__desc ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-1) 0%, var(--color-2) 100%);
+}
+
+.timeline__desc p {
+  margin: 0;
+  color: var(--color-text-light);
+  line-height: var(--vspace-0_875);
+}
+
 .timeline__desc:hover {
   background: linear-gradient(135deg, rgba(234, 190, 124, 0.1) 0%, rgba(234, 190, 124, 0.05) 100%);
   box-shadow: 0 4px 15px rgba(234, 190, 124, 0.2);
