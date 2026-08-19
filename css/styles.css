@@ -4103,6 +4103,261 @@ img.u-pull-left {
   transition: all 0.3s ease;
 }
 
+/* --------------------------------------------------------------------
+ * ## works grid (mockup cards)
+ * -------------------------------------------------------------------- */
+.works-grid {
+  list-style: none;
+  margin: var(--vspace-4) 0 var(--vspace-1);
+  padding: 0;
+}
+
+.works-card {
+  position: relative;
+  margin-bottom: var(--vspace-2);
+}
+
+.works-card__trigger.folio-list__item-link {
+  display: block;
+  width: 100%;
+  padding-left: 0;
+  color: white;
+  text-decoration: none;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.works-card__trigger.folio-list__item-link:hover,
+.works-card__trigger.folio-list__item-link:focus {
+  color: white;
+  outline: none;
+  transform: translateY(-8px);
+}
+
+.works-card__trigger.folio-list__item-link:hover .browser-mockup,
+.works-card__trigger.folio-list__item-link:focus .browser-mockup {
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35),
+              0 0 0 1px rgba(234, 190, 124, 0.25);
+}
+
+.works-card__trigger.folio-list__item-link:hover .browser-mockup__screen img,
+.works-card__trigger.folio-list__item-link:focus .browser-mockup__screen img {
+  transform: scale(1.04);
+}
+
+.works-card__trigger.folio-list__item-link:hover .works-card__overlay,
+.works-card__trigger.folio-list__item-link:focus .works-card__overlay {
+  opacity: 1;
+  visibility: visible;
+}
+
+.works-card__trigger.folio-list__item-link:hover .works-card__title,
+.works-card__trigger.folio-list__item-link:focus .works-card__title {
+  color: var(--color-1);
+}
+
+.works-card__mockup {
+  position: relative;
+  margin-bottom: var(--vspace-0_75);
+}
+
+.browser-mockup {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #1a1a1f;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+  transition: box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.browser-mockup__bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: linear-gradient(180deg, #2a2a32 0%, #222228 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.browser-mockup__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #4a4a52;
+  flex-shrink: 0;
+  transition: background 0.3s ease;
+}
+
+.browser-mockup__dot:nth-child(1) { background: #ff5f57; }
+.browser-mockup__dot:nth-child(2) { background: #febc2e; }
+.browser-mockup__dot:nth-child(3) { background: #28c840; }
+
+.browser-mockup__url {
+  flex: 1;
+  margin-left: 8px;
+  padding: 4px 12px;
+  font-size: 11px;
+  font-family: var(--font-2);
+  color: rgba(255, 255, 255, 0.45);
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.browser-mockup__screen {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #0d0d10;
+}
+
+.browser-mockup__screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.works-card__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(234, 190, 124, 0.88) 0%, rgba(35, 150, 127, 0.88) 100%);
+  border-radius: 12px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+  z-index: 2;
+}
+
+.works-card__overlay-text {
+  font-family: var(--font-1);
+  font-size: var(--text-md);
+  font-weight: 500;
+  color: white;
+  letter-spacing: 0.04em;
+  padding: 0.6rem 1.4rem;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50px;
+  transform: translateY(8px);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.works-card__trigger:hover .works-card__overlay-text,
+.works-card__trigger:focus .works-card__overlay-text {
+  transform: translateY(0);
+}
+
+.works-card__body {
+  padding: var(--vspace-0_25) 0 0;
+  border-top: 1px solid var(--color-border);
+  position: relative;
+}
+
+.works-card__body::before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-1) 0%, var(--color-2) 100%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.works-card__trigger:hover .works-card__body::before,
+.works-card__trigger:focus .works-card__body::before {
+  width: 100%;
+}
+
+.works-card__cat {
+  display: inline-block;
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-1);
+  margin-bottom: 0.35rem;
+}
+
+.works-card__title {
+  font-family: var(--font-1);
+  font-size: var(--text-lg);
+  font-weight: 500;
+  line-height: var(--vspace-1);
+  margin: 0;
+  color: white;
+  transition: color 0.35s ease;
+}
+
+.works-card__external {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  color: white;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              background 0.35s ease,
+              box-shadow 0.35s ease;
+}
+
+.works-card__external svg {
+  width: 14px;
+  height: 14px;
+  transform: rotate(-45deg);
+  transition: transform 0.35s ease;
+}
+
+.works-card__external:hover,
+.works-card__external:focus {
+  background: linear-gradient(135deg, var(--color-1) 0%, var(--color-2) 100%);
+  transform: scale(1.12);
+  box-shadow: 0 4px 16px rgba(234, 190, 124, 0.4);
+  outline: none;
+}
+
+.works-card__external:hover svg,
+.works-card__external:focus svg {
+  transform: rotate(0deg);
+}
+
+@media screen and (max-width: 800px) {
+  .works-card {
+    margin-bottom: var(--vspace-1_5);
+  }
+
+  .works-card__title {
+    font-size: var(--text-md);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .browser-mockup__url {
+    display: none;
+  }
+
+  .works-card__external {
+    top: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+  }
+}
+
 /* ------------------------------------------------------------------- 
  * ## modal popup
  * ------------------------------------------------------------------- */
